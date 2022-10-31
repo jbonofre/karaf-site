@@ -1,56 +1,41 @@
-Apache Karaf Website
-====================
+# Website
 
-This project contains the Apache Karaf website.
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-## Contribute
-
-The concrete repository is on the svn but if you want to contribute, you have to clone the Github repository which is a mirror and provide a pull request with your changes. You can find more informations about how to contribute on the community page of the project (https://karaf.apache.org/community.html).
-
-Clone:
+### Installation
 
 ```
-git clone https://github.com/apache/karaf-site.git
+$ yarn
 ```
 
-## Building
-
-Karaf website uses jekyll to build (generate the HTML resources).
-
-To install Jekyll, refer to https://jekyllrb.com/docs/
-
-Once Jekyll is installed, you can build website using:
+### Local Development
 
 ```
-bundle exec jekyll serve
+$ yarn start
 ```
 
-This command builds website and start the local Jekyll server on http://localhost:4000
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-NB: your local Jekyll installation might need additional modules required by Apache Karaf website. Just run `bundle install` to install these modules.
-
-## Deploy
-
-Build the site for production:
+### Build
 
 ```
-JEKYLL_ENV=production bundle exec jekyll build
+$ yarn build
 ```
 
-Package the war:
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Deployment
+
+Using SSH:
 
 ```
-mvn clean install
+$ USE_SSH=true yarn deploy
 ```
 
-You can test the war with Jetty embedded and visit http://localhost:8080/ :
+Not using SSH:
 
 ```
-mvn jetty:run
+$ GIT_USER=<Your GitHub username> yarn deploy
 ```
 
-Deploy on scm
-
-```
-mvn install scm-publish:publish-scm
-```
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
